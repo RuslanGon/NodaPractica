@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { env } from '../utils/env.js';
 import { ENV_VARS } from '../constants/index.js';
 
-export const initMongoColection = async () => {
+export const initMongoConection = async () => {
     const user = env(ENV_VARS.MONGODB_USER);
     const password = env(ENV_VARS.MONGODB_PASSWORD);
     const url = env(ENV_VARS.MONGODB_URL);
