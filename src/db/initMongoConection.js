@@ -11,6 +11,7 @@ export const initMongoConection = async () => {
     const conectionLink = `mongodb+srv://${user}:${password}@${url}/${db}?retryWrites=true&w=majority&appName=Cluster0`;
 
     console.log('Connection link:', conectionLink);
+  
 
     try {
       await mongoose.connect(conectionLink, { useNewUrlParser: true, useUnifiedTopology: true });
