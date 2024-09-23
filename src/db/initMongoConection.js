@@ -8,13 +8,13 @@ export const initMongoConection = async () => {
     // const url = env(ENV_VARS.MONGODB_URL);
     // const db = env(ENV_VARS.MONGODB_DB);
 
-    const conectionLink = `mongodb+srv://Ruslan:596RO5Wls2hS460F@cluster0.9yeu1fb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+    
+    const conectionLink = `mongodb+srv://Ruslan:sy79QFrKWf0vt82i@cluster0.9yeu1fb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
     // const conectionLink = `mongodb+srv://${user}:${password}@${url}/${db}?retryWrites=true&w=majority&appName=Cluster0`;
 
     console.log('Connection link:', conectionLink);
   
-
     try {
       await mongoose.connect(conectionLink, { useNewUrlParser: true, useUnifiedTopology: true });
       console.log('MongoDB connection successful');
