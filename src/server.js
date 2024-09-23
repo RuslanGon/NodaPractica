@@ -2,6 +2,7 @@ import express from "express";
 import pino from "pino-http";
 import cors from "cors";
 import { env } from "./utils/env.js";
+import { ENV_VARS } from "./constants/index.js";
 
 
 export const startServer = () => {
@@ -29,7 +30,7 @@ export const startServer = () => {
     res.status(404).send("Oops, route was not found");
   });
 
-  const PORT = env('PORT', 3000);
+  const PORT = env(ENV_VARS.PORT, 3000);
   app.listen(PORT, () => {
     console.log(`Server is running on port ${3000}`);
   });
