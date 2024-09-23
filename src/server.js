@@ -29,7 +29,7 @@ export const startServer = () => {
     res.status(404).send("Oops, route was not found");
   });
 
-  const PORT = env('PORT');
+  const PORT = env('PORT', 3000);
   app.listen(PORT, () => {
     console.log(`Server is running on port ${3000}`);
   });
