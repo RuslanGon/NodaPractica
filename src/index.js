@@ -1,6 +1,15 @@
 import express from 'express';
+import pino from 'pino-http';
 
 const app = express();
+
+app.use(
+    pino({
+      transport: {
+        target: 'pino-pretty', 
+      },
+    })
+  );
 
 app.get('/', (req, res, next) => {
 res.send('Hello Ruslan');
