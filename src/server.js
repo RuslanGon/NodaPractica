@@ -4,6 +4,7 @@ import cors from "cors";
 import { env } from "./utils/env.js";
 import { ENV_VARS } from "./constants/index.js";
 import { notFoundMiddleware } from "./middlewars/notFoundMiddleware.js";
+import { errorHandlerMiddleware } from "./middlewars/errorHandlerMiddleware.js";
 
 
 export const startServer = () => {
@@ -29,7 +30,7 @@ export const startServer = () => {
 
   app.use(notFoundMiddleware);
 
-  app.use();
+  app.use(errorHandlerMiddleware);
 
   const PORT = env(ENV_VARS.PORT, 3000);
   app.listen(PORT, () => {
