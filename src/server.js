@@ -3,6 +3,7 @@ import pino from "pino-http";
 import cors from "cors";
 import { env } from "./utils/env.js";
 import { ENV_VARS } from "./constants/index.js";
+import { notFoundMiddleware } from "./middlewars/notFoundMiddleware.js";
 
 
 export const startServer = () => {
@@ -26,9 +27,9 @@ export const startServer = () => {
     next(new Error("some error here"));
   });
 
-  app.use((req, res, next) => {
-    res.status(404).send("Oops, route was not found");
-  });
+  app.use(notFoundMiddleware);
+
+  app.use();
 
   const PORT = env(ENV_VARS.PORT, 3000);
   app.listen(PORT, () => {
