@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
 
- const studentSchema = new Schema({
-    name: {type: String, required: true },
-    age: {type: Number, required: true },
-    gender: {type: String, required: true, enum: ['male', 'famale', 'other'] },
-    avgMark: {type: Number, required: true, min: 1, max:17 },
-    onDuty: {type: Boolean, default: false },
-}, { timeseries:true, versionKey: false });
+const studentSchema = new Schema({
+    name: { type: String, required: true },
+    age: { type: Number, required: true },
+    gender: { type: String, required: true, enum: ['male', 'female', 'other'] },
+    avgMark: { type: Number, required: true, min: 1, max: 17 },
+    onDuty: { type: Boolean, default: false },
+}, { versionKey: false });
 
-export const Student = model('students', studentSchema );
+export const Student = model('students', studentSchema);
