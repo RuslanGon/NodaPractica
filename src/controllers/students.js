@@ -30,24 +30,19 @@ export const getStudentByIdController = async (req, res, next) => {
 
 
   export const cteateStudentController = async (req, res, next) => {
-    const id = req.params.studentId;
-    const student = await createStudent(id);
+    const { body } = req;
+    const student = await createStudent(body);
 
-    res.status(204).json({
-      status: 204,
-      message: 'successfully delete student',
+    res.status(201).json({
+      status: 201,
+      message: 'successfully create new student',
       data: student,
     });
   };
 
 
  export const deleteStudentByIdController = async (req, res, next) => {
-  const { body } = req;
-  const student = await deleteStudent(body);
-
-  res.status(201).json({
-    status: 201,
-    message: 'successfully create new student',
-    data: student,
-  });
+  const id = req.params.studentId;
+  await deleteStudent(id);
+  res.status(204).send();
 };
