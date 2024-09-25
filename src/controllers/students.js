@@ -1,13 +1,13 @@
 import { getAllStudents, getStudentById } from "../services/students.js";
 
 export const getStudentsController = async (req, res, next) => {
-    const students = await getAllStudents();
-    res.json({
-      status: 200,
-      message: 'successfully get all students',
-      data: students
-    });
-  };
+  const students = await getAllStudents();
+  res.json({
+    status: 200,
+    message: 'successfully get all students',
+    data: students,
+  });
+};
 
 
 export const getStudentByIdController = async (req, res, next) => {
