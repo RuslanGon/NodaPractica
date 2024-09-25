@@ -22,7 +22,11 @@ export const deleteStudent = async (studentId) => {
 };
 
 export const upsertStudent = async (id, payload, options = {}) => {
-  const student = await Student.findByIdAndUpdate(id, payload, {new: true, ...options});
+  const student = await Student.findByIdAndUpdate(id, payload, {
+    new: true,
+    includeResultMetadata: true,
+    ...options,
+  });
   if (!student) {
     throw createHttpError(404, 'student not found');
   }
