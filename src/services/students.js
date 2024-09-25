@@ -27,7 +27,7 @@ export const upsertStudent = async (id, payload, options = {}) => {
     includeResultMetadata: true,
     ...options,
   });
-  if (!rawResult && rawResult.value) {
+  if (!rawResult || rawResult.value) {
     throw createHttpError(404, 'student not found');
   }
   return {
