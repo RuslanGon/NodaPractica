@@ -6,8 +6,8 @@ export const getAllStudents = async () => {
 };
 
 export const getStudentById = async (id) => {
-  const students = await Student.findById(id);
-  if (!students) {
+  const student = await Student.findById(id);
+  if (!student) {
     throw createHttpError(404, 'student not found');
   }
 };
@@ -21,7 +21,10 @@ export const deleteStudent = async (studentId) => {
   await Student.findByIdAndDelete(studentId);
 };
 
-export const upsertStudent = async (id, payload) => {
-  const student = await Student.updateOne({ id: id }, payload);
+export const upsertStudent = async (id, payload, options = {}) => {
+  const student = await Student.findByIdAndUpdate(id, payload, {new: true, ...options});
+  if (!student) {
+    throw createHttpError(404, 'student not found');
+  }
   return student;
 };
