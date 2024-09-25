@@ -5,7 +5,7 @@ import { startServer } from "./server.js";
 (async() => {
 await initMongoConection();
 // const students = await Student.find();
-
+// console.log(students);
     startServer();
 })();
 
