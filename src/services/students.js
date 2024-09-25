@@ -1,10 +1,9 @@
-import createHttpError from "http-errors";
-import { Student } from "../db/models/student.js";
+import createHttpError from 'http-errors';
+import { Student } from '../db/models/student.js';
 
 export const getAllStudents = async () => {
-return await Student.find({});
+  return await Student.find({});
 };
-
 
 export const getStudentById = async (id) => {
   const students = await Student.findById(id);
@@ -14,11 +13,15 @@ export const getStudentById = async (id) => {
 };
 
 export const createStudent = async (payload) => {
-    const student = await Student.create(payload);
-    return student;
-  };
+  const student = await Student.create(payload);
+  return student;
+};
 
+export const deleteStudent = async (studentId) => {
+  await Student.findByIdAndDelete(studentId);
+};
 
-  export const deleteStudent = async (studentId) => {
-    await Student.findByIdAndDelete(studentId);
-  };
+export const upsertStudent = async (id, payload) => {
+  const student = await Student.updateOne({ id: id }, payload);
+  return student;
+};
