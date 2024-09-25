@@ -47,7 +47,6 @@ export const getStudentByIdController = async (req, res, next) => {
   res.status(204).send();
 };
 
-
 export const patchStudentController = async (req, res, next) => {
   const { body } = req;
   const { studentId } = req.params;
