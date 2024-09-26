@@ -12,12 +12,13 @@ import { validateMongoId } from '../middlewars/validateMongoId.js';
 
 const studentsRouter = Router();
 
+studentsRouter.use('/students/:studentId', validateMongoId('studentId'));
+
 studentsRouter.get('/students',
 ctrlWrapper(getStudentsController));
 
 studentsRouter.get(
   '/students/:studentId',
-  validateMongoId('studentId'),
   ctrlWrapper(getStudentByIdController),
 );
 
@@ -26,19 +27,16 @@ ctrlWrapper(cteateStudentController));
 
 studentsRouter.patch(
   '/students/:studentId',
-  validateMongoId('studentId'),
   ctrlWrapper(patchStudentController),
 );
 
 studentsRouter.put(
   '/students/:studentId',
-  validateMongoId('studentId'),
   ctrlWrapper(putStudentController),
 );
 
 studentsRouter.delete(
   '/students/:studentId',
-  validateMongoId('studentId'),
   ctrlWrapper(deleteStudentByIdController),
 );
 
