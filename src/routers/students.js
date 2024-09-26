@@ -11,6 +11,7 @@ import { ctrlWrapper } from '../middlewars/ctrlWrapper.js';
 import { validateMongoId } from '../middlewars/validateMongoId.js';
 import { validateBody } from '../middlewars/validateBody.js';
 import { createStudentSchema } from '../validation/createStudentSchema.js';
+import { updateStudentSchema } from '../validation/updateStudentSchema.js';
 
 const studentsRouter = Router();
 
@@ -30,6 +31,7 @@ ctrlWrapper(cteateStudentController));
 
 studentsRouter.patch(
   '/students/:studentId',
+  validateBody(updateStudentSchema),
   ctrlWrapper(patchStudentController),
 );
 
