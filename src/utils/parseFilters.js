@@ -14,19 +14,19 @@ const parseFloatFilter = (unknow) => {
     };
 
 const parseGender = (unknow) => {
-    if(['mail', 'female', 'other'].includes(unknow)) return unknow;
+    if(['male', 'female', 'other'].includes(unknow)) return unknow;
     return;
     };
 
 const parseOnDuty = (unknow) => {
   if (!['true', 'false'].includes(unknow)) return;
-  unknow === 'true' ? true : false;
+  return unknow === 'true' ? true : false;
 };
 
 export const parseFilters = (query) => {
   return {
     minAge: parseIntFilter(query.minAge),
-    maxAge: parseIntFilter(query.manAge),
+    maxAge: parseIntFilter(query.maxAge),
     minAvgMark: parseFloatFilter(query.minAvgMark),
     maxAvgMark: parseFloatFilter(query.maxAvgMark),
     gender: parseGender(query.gender),
