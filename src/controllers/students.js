@@ -4,8 +4,10 @@ import { parsePaginationParams } from "../utils/parsePaginationParams.js";
 export const getStudentsController = async (req, res, next) => {
 const {page, perPage} = parsePaginationParams(req.query);
 const {sortBy, sortOrder} = req.query;
+const {minAge, maxAge, minAvgMark, maxAvgMark, gender, onDuty} = req.query;
+const filter = {minAge, maxAge, minAvgMark, maxAvgMark, gender, onDuty};
 
-const students = await getAllStudents({page, perPage, sortBy, sortOrder});
+const students = await getAllStudents({page, perPage, sortBy, sortOrder, filter});
   res.json({
     status: 200,
     message: 'successfully get all students',

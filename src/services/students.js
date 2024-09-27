@@ -19,15 +19,40 @@ export const getAllStudents = async ({
   perPage = 5,
   sortBy = 'id',
   sortOrder = 'asc',
+  filter = {}
 }) => {
   const skip = perPage * (page - 1);
-  // const studentsCount = await Student.find().countDocuments();
-  // const students = await Student.find().skip(skip).limit(perPage);
+  const filterQuery = {};
+
+  if (filter.minAge) {
+    filterQuery.age = { $gte: filter.minAge };
+  }
+
+  if (filter.maxAge) {
+    filterQuery.age = filterQuery.age ? { ...filterQuery.age, $lte: filter.maxAge } : { $lte: filter.maxAge };
+  }
+
+  if (filter.minAvgMark) {
+    filterQuery.avgMark = { $gte: filter.minAvgMark };
+  }
+
+  if (filter.maxAvgMark) {
+    filterQuery.avgMark = filterQuery.avgMark ? { ...filterQuery.avgMark, $lte: filter.maxAvgMark } : { $lte: filter.maxAvgMark };
+  }
+
+  if (filter.gender) {
+    filterQuery.gender = filter.gender;
+  }
+
+  if (typeof filter.onDuty !== 'undefined') {
+    filterQuery.onDuty = filter.onDuty;
+  }
+
   const [studentsCount, students] = await Promise.all([
-    Student.find().countDocuments(),
-    Student.find().skip(skip).limit(perPage).sort({
+    Student.find(filterQuery).countDocuments(),
+    Student.find(filterQuery).skip(skip).limit(perPage).sort({
       [sortBy]: sortOrder
-    })
+    }).exec(),
   ]);
 
   const informationPagination = createPaginationInformation(
@@ -35,6 +60,7 @@ export const getAllStudents = async ({
     perPage,
     studentsCount,
   );
+
   return {
     students,
     ...informationPagination,
