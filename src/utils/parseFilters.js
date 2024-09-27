@@ -1,35 +1,34 @@
-
-const parseIntFilter = (unknow) => {
-if(typeof unknow !== 'string')return;
-const parsedInt = parseInt(unknow);
-if(Number.isNaN(parsedInt))return;
-return parsedInt;
-};
-
-const parseFloatFilter = (unknow) => {
-    if(typeof unknow !== 'string')return;
-    const parsedFload = parseFloatFilter(unknow);
-    if(Number.isNaN(parsedFload))return;
-    return parsedFload;
-    };
-
-const parseGender = (unknow) => {
-    if(['male', 'female', 'other'].includes(unknow)) return unknow;
-    return;
-    };
-
-const parseOnDuty = (unknow) => {
-  if (!['true', 'false'].includes(unknow)) return;
-  return unknow === 'true' ? true : false;
-};
-
-export const parseFilters = (query) => {
-  return {
-    minAge: parseIntFilter(query.minAge),
-    maxAge: parseIntFilter(query.maxAge),
-    minAvgMark: parseFloatFilter(query.minAvgMark),
-    maxAvgMark: parseFloatFilter(query.maxAvgMark),
-    gender: parseGender(query.gender),
-    onDuty: parseOnDuty(query.onDuty),
+const parseIntFilter = (unknown) => {
+    if (typeof unknown !== 'string') return;
+    const parsedInt = parseInt(unknown);
+    if (Number.isNaN(parsedInt)) return;
+    return parsedInt;
   };
-};
+
+  const parseFloatFilter = (unknown) => {
+    if (typeof unknown !== 'string') return;
+    const parsedFloat = parseFloat(unknown);
+    if (Number.isNaN(parsedFloat)) return;
+    return parsedFloat;
+  };
+
+  const parseGender = (unknown) => {
+    if (['male', 'female', 'other'].includes(unknown)) return unknown;
+    return;
+  };
+
+  const parseOnDuty = (unknown) => {
+    if (!['true', 'false'].includes(unknown)) return;
+    return unknown === 'true';
+  };
+
+  export const parseFilters = (query) => {
+    return {
+      minAge: parseIntFilter(query.minAge),
+      maxAge: parseIntFilter(query.maxAge),
+      minAvgMark: parseFloatFilter(query.minAvgMark),
+      maxAvgMark: parseFloatFilter(query.maxAvgMark),
+      gender: parseGender(query.gender),
+      onDuty: parseOnDuty(query.onDuty),
+    };
+  };
