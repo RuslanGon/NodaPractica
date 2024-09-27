@@ -1,7 +1,7 @@
 import createHttpError from 'http-errors';
 import { Student } from '../db/models/student.js';
 
-export const getAllStudents = async () => {
+export const getAllStudents = async ({page = 1, perPage = 5}) => {
   return await Student.find({});
 };
 
