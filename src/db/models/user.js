@@ -6,4 +6,4 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
 }, { versionKey: false });
 
-export const User = model('user', userSchema);
+export const User = model('users', userSchema);
