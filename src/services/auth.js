@@ -35,3 +35,10 @@ return await Session.create({
 });
 
 };
+
+export const logoutUser = async ({ sessionId, sessionToken }) => {
+  return await Session.deleteOne({
+    _id: sessionId,
+    refreshToken: sessionToken,
+  });
+};
