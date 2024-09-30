@@ -6,6 +6,7 @@ import { ENV_VARS } from './constants/index.js';
 import { notFoundMiddleware } from './middlewars/notFoundMiddleware.js';
 import { errorHandlerMiddleware } from './middlewars/errorHandlerMiddleware.js';
 import rootRouter from './routers/index.js';
+import cookiesParser from 'cookie-parser';
 
 export const startServer = () => {
   const app = express();
@@ -19,6 +20,8 @@ export const startServer = () => {
   );
 
   app.use(cors());
+
+  app.use(cookiesParser());
 
   app.use(express.json());
 
