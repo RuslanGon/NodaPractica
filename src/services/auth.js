@@ -42,3 +42,8 @@ export const logoutUser = async ({ sessionId, sessionToken }) => {
     refreshToken: sessionToken,
   });
 };
+
+
+export const refreshUser =  async ({ sessionId, sessionToken }) => {
+
+};
