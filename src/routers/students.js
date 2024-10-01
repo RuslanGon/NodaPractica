@@ -12,10 +12,13 @@ import { validateMongoId } from '../middlewars/validateMongoId.js';
 import { validateBody } from '../middlewars/validateBody.js';
 import { createStudentSchema } from '../validation/createStudentSchema.js';
 import { updateStudentSchema } from '../validation/updateStudentSchema.js';
+import { authenticate } from '../middlewars/authenticate.js';
 
 const studentsRouter = Router();
 
 studentsRouter.use('/:studentId', validateMongoId('studentId'));
+studentsRouter.use('/', authenticate);
+
 
 studentsRouter.get('/',
 ctrlWrapper(getStudentsController));
