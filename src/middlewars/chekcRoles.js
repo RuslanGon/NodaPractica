@@ -5,20 +5,20 @@ export const checkRoles =
   (...roles) =>
   async (req, res, next) => {
     const user = req.user;
-    const studetnId = req.studetnId;
+    const studentId = req.studentId;
 
     if(!roles.includes(user.role)){
         return next(createHttpError(403, 'Forbidden'));
     }
 
-    if (roles.includes('teacher') && user.role === 'teacher') {
+    if (user.role === 'teacher') {
       return next();
     }
 
-    if (roles.includes('parent') && user.role === 'parent') {
+    if (user.role === 'parent') {
       const student = await Student.findOne({
-        id: studetnId,
-        paretId: user._id,
+        id: studentId,
+        parentId: user._id,
       });
 
       if (!student) {
@@ -26,4 +26,5 @@ export const checkRoles =
       }
       return next();
     }
+    return next(createHttpError(403, 'Insufficient permissions'));
   };
