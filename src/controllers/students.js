@@ -3,12 +3,19 @@ import { parseFilters } from "../utils/parseFilters.js";
 import { parsePaginationParams } from "../utils/parsePaginationParams.js";
 
 export const getStudentsController = async (req, res, next) => {
-const {page, perPage} = parsePaginationParams(req.query);
-const {sortBy, sortOrder} = req.query;
+  const { page, perPage } = parsePaginationParams(req.query);
+  const { sortBy, sortOrder } = req.query;
 
-const filter = parseFilters(req.query);
+  const filter = parseFilters(req.query);
 
-const students = await getAllStudents({page, perPage, sortBy, sortOrder, filter});
+  const students = await getAllStudents({
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+    filter,
+    userId: req.user._id
+  });
   res.json({
     status: 200,
     message: 'successfully get all students',
