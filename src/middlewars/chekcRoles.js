@@ -7,12 +7,16 @@ export const checkRoles =
     const user = req.user;
     const studetnId = req.studetnId;
 
+    if(!roles.includes(user.role)){
+        return next(createHttpError(403, 'Forbidden'));
+    }
+
     if (roles.includes('teacher') && user.role === 'teacher') {
       return next();
     }
 
     if (roles.includes('parent') && user.role === 'parent') {
-      const student = await Student.find({
+      const student = await Student.findOne({
         id: studetnId,
         paretId: user._id,
       });
@@ -22,5 +26,4 @@ export const checkRoles =
       }
       return next();
     }
-    return next(createHttpError(403, 'Forbbiden'));
   };
