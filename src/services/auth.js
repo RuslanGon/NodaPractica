@@ -60,6 +60,8 @@ if (!user) {
   throw createHttpError(401, 'Session not found');
 }
 
+
+await Session.deleteOne({_id: sessionId});
 return await Session.create({
   userId: user._id,
   ...createSession(),
